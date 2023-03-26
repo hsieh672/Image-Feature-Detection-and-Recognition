@@ -108,3 +108,28 @@ w_correlation=str2num(get(handles.edit14,'String')); %定義correlation權重
 w_globallbp=str2num(get(handles.edit17,'String')); %定義globallbp權重
 w_locallbp=str2num(get(handles.edit18,'String')); %定義locallbp權重
 ```
+## Search images
+Push the botton "Search" start searching for the closest images to the target image.  
+```sh
+%與target距離加權
+for i=1:440
+    norm_total(i)=w_query*norm_Query(i)+w_color_layout*norm_Color(i)+w_correlation*norm_Correlation(i)+w_globallbp*norm_Global(i)+w_locallbp*norm_Local(i);
+end
+
+[v idx]=sort(norm_total); %排列與目標圖最相關
+    
+pp=0;
+set(handles.edit11,'String',['page ' num2str(pp) ' of 44']);
+
+for i=1:10
+    axes(handles.(['axes',num2str(i)])); %重新放入與目標圖最相關的圖片
+    imshow(uint8(img(:,:,:,idx(i))));
+    set(handles.(['edit',num2str(i)]),'String',[idx(i)]);   
+end
+
+index_new=idx;
+idx_q=idx;
+point=1;
+save data_pp.mat pp;
+```
+## Simulation Results
