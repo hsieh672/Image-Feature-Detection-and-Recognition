@@ -136,4 +136,7 @@ save data_pp.mat pp;
 ```
 ## Simulation Results
 ![bus](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/bus.png)  
-![food](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/food.png)
+1. When searching for this image, it was found that using Query analysis of image color produced the most similar results from a single feature, while GlobalLBP and Local LBP analysis produced more consistent results in analyzing image motion. Therefore, when integrating features, Query, GlobalLBP, and Local LBP were chosen to analyze this image, resulting in the Fig. 26 output.  
+2. From a single feature analysis perspective, Correlation performed the worst. It is speculated that this is because this method requires comparison with the 3-dimensional RGB values of neighboring pixels, causing similar results in important areas of the entire image, but insignificant areas such as the background may result in large differences if one pixel is compared similarly. If each pixel is summed up, it can cause a large difference.  
+3. GlobalLBP and Local LBP first converted the image to grayscale before image processing, and when comparing the differences in surrounding pixels, they only needed to compare the differences between 1-dimensional [0 1], which is simpler than Correlation, resulting in better comparison results.  
+![food](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/food.png)  
