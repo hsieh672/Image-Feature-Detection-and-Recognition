@@ -1,5 +1,7 @@
 # Image-feature-detection-and-recognition
 Using LBP, Global LBP image algorithms and VGG16, ResNet18 neural networks for image recognition of objects and colors and designing a simple UI/UX interface with MATLAB to allow users to input their own database for image classification.  
+## Interface 
+![interface](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/interface.png)  
 ## Load all images 
 Push the botton "Display" to load the image which you want to search.  
 The data I used contain 440 images and each page of the interface contains 10 images
@@ -133,3 +135,5 @@ point=1;
 save data_pp.mat pp;
 ```
 ## Simulation Results
+![bus](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/bus.png)  
+![food](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/food.png)
