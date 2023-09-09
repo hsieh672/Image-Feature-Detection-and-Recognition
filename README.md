@@ -1,10 +1,10 @@
 # Image-feature-detection-and-recognition
-Using LBP, Global LBP image algorithms and VGG16, ResNet18 neural networks for image recognition of objects and colors and designing a simple UI/UX interface with MATLAB to allow users to input their own database for image classification.  
+Using LBP, Global LBP image algorithms, and VGG16, ResNet18 neural networks for image recognition of objects and colors and designing a simple UI/UX interface with MATLAB to allow users to input their database for image classification.  
 ## Interface 
 ![interface](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/interface.png)  
 ## Load all images 
-Push the botton "Display" to load the image which you want to search.  
-The data I used contain 440 images and each page of the interface contains 10 images
+Push the " Display " button to load the image you want to search.  
+The data I used contains 440 images, and each page of the interface contains ten images
 ```sh
 function pushbutton1_Callback(hObject, eventdata, handles)
 
@@ -38,7 +38,7 @@ save data_pp.mat pp;
 save data_img.mat img;
 ```
 ## Define target image
-Push the botton "Target" to enter the number of target image.  
+Push the button "Target" to enter the number of target images.  
 ```sh
 function pushbutton2_Callback(hObject, eventdata, handles)
 
@@ -93,8 +93,9 @@ end
 
 save data_pp.mat pp;
 ```
-## Define the weights of each features
-There are five bottons under "weights", enter a number of the weights you need to use for each features.  
+## Define the weights of each feature
+There are five buttons under "weights".  
+Enter the number of the weights you need to use for each feature.  
 ```sh
 function pushbutton5_Callback(hObject, eventdata, handles)
 
@@ -111,7 +112,7 @@ w_globallbp=str2num(get(handles.edit17,'String')); %定義globallbp權重
 w_locallbp=str2num(get(handles.edit18,'String')); %定義locallbp權重
 ```
 ## Search images
-Push the botton "Search" start searching for the closest images to the target image.  
+Push the button "Search" and start searching for the closest images to the target image.  
 ```sh
 %與target距離加權
 for i=1:440
@@ -137,16 +138,16 @@ save data_pp.mat pp;
 ## Simulation Results
 ![bus](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/bus.png)  
 #### Discussion
-1. When searching for this image, it was found that using Query analysis of image color produced the most similar results from a single feature, while GlobalLBP and Local LBP analysis produced more consistent results in analyzing image motion. Therefore, when integrating features, Query, GlobalLBP, and Local LBP were chosen to analyze this image, resulting in the above figure.  
+1. When searching for this image, it was found that using a Query analysis of image color produced the most similar results from a single feature. In contrast, GlobalLBP and Local LBP analysis produced more consistent results in analyzing image motion. Therefore, when integrating features, Query, GlobalLBP, and Local LBP were chosen to analyze this image, resulting in the above figure.  
 
-2. From a single feature analysis perspective, Correlation performed the worst. It is speculated that this is because this method requires comparison with the 3-dimensional RGB values of neighboring pixels, causing similar results in important areas of the entire image, but insignificant areas such as the background may result in large differences if one pixel is compared similarly. If each pixel is summed up, it can cause a large difference.  
+2. From a single feature analysis perspective, Correlation performed the worst. It is speculated that this method requires comparison with the 3-dimensional RGB values of neighboring pixels, causing similar results in essential areas of the entire image. Still, insignificant regions like the background may result in significant differences if one pixel is compared similarly. If each pixel is summed up, it can cause a considerable difference.  
  
-3. GlobalLBP and Local LBP first converted the image to grayscale before image processing, and when comparing the differences in surrounding pixels, they only needed to compare the differences between 1-dimensional [0 1], which is simpler than Correlation, resulting in better comparison results.  
+3. GlobalLBP and Local LBP first converted the image to grayscale before image processing. When comparing the differences in surrounding pixels, they only needed to compare the differences between 1-dimensional [0 1], which is more straightforward than Correlation, resulting in better comparison results.  
 
 ![food](https://github.com/hsieh672/Image-feature-detection-and-recognition/blob/main/imag/food.png)  
 #### Discussion
-1. When searching for this image, it was found that using GlobalLBP and Local LBP analysis of image color produced the most similar results to the target image from a single feature. Therefore, when integrating features, GlobalLBP and Local LBP were chosen to analyze this image. Since the results of both analysis methods were similar, the weights were adjusted to 1:1, resulting in the above figure.  
+1. When searching for this image, it was found that GlobalLBP and Local LBP analysis of image color produced the most similar results to the target image from a single feature. Therefore, GlobalLBP and Local LBP were chosen to analyze this image when integrating features. Since the results of both analysis methods were similar, the weights were adjusted to 1:1, resulting in the above figure.  
 
-2. From a single feature analysis perspective, because this image is cluttered in both color and object, when using Query, Color Layout, or Correlation to compare the differences between each pixel, regardless of whether image resizing or color quantization was performed, it was difficult to distinguish between the background and the object, resulting in larger differences in the analysis results.  
+2. From a single feature analysis perspective, because this image is cluttered in both color and object, when using Query, Color Layout, or Correlation to compare the differences between each pixel, regardless of whether image resizing or color quantization was performed, it wasn't easy to distinguish between the background and the object, resulting in more significant differences in the analysis results.  
 
-3. In the Correlation analysis method, as long as one pixel is the same as the target pixel and is marked, it may produce significant differences compared to other points that are similar to the target image but are not marked in that pixel.  
+3. In the Correlation analysis method, as long as one pixel is the same as the target pixel and is marked, it may produce significant differences compared to other points similar to the target image but not marked in that pixel.  
